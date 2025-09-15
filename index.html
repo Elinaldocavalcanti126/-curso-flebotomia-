@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Flebotomia - 12 Semanas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .nav-tab {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-tab.active {
+            background: #e74c3c;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .week-card {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .week-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .week-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .week-card p {
+            opacity: 0.9;
+        }
+
+        .quiz-container, .prova-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .question {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .question h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            margin: 10px 0;
+        }
+
+        .option {
+            display: block;
+            margin: 5px 0;
+            padding: 10px;
+            background: #ecf0f1;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .option:hover {
+            background: #d5dbdb;
+        }
+
+        .option input {
+            margin-right: 10px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .content-detail {
+            line-height: 1.8;
+        }
+
+        .content-detail h2 {
+            color: #2c3e50;
+            margin: 25px 0 15px 0;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 10px;
+        }
+
+        .content-detail h3 {
+            color: #34495e;
+            margin: 20px 0 10px 0;
+        }
+
+        .content-detail ul {
+            margin: 15px 0 15px 30px;
+        }
+
+        .content-detail li {
+            margin: 8px 0;
+        }
+
+        .progress-bar {
+            background: #ecf0f1;
+            border-radius: 10px;
+            height: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🩸 Curso de Flebotomia</h1>
+            <p>Formação Completa em 12 Semanas | 3 Meses de Aprendizado Intensivo</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar" style="width: 0%">0%</div>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('cronograma')">📅 Cronograma</button>
+            <button class="nav-tab" onclick="showTab('conteudo')">📚 Conteúdo</button>
+            <button class="nav-tab" onclick="showTab('exercicios')">✏️ Exercícios</button>
+            <button class="nav-tab" onclick="showTab('prova')">🎓 Prova Final</button>
+            <button class="nav-tab" onclick="showTab('recursos')">🔧 Recursos</button>
+        </div>
+
+        <div class="content">
+            <!-- TAB CRONOGRAMA -->
+            <div id="cronograma" class="tab-content">
+                <h2>📅 Cronograma do Curso - 12 Semanas</h2>
+                <div class="week-grid" id="weekGrid"></div>
+            </div>
+
+            <!-- TAB CONTEÚDO -->
+            <div id="conteudo" class="tab-content hidden">
+                <h2>📚 Conteúdo Detalhado</h2>
+                <div id="contentDetail" class="content-detail">
+                    <p>Selecione uma semana no cronograma para ver o conteúdo detalhado.</p>
+                </div>
+            </div>
+
+            <!-- TAB EXERCÍCIOS -->
+            <div id="exercicios" class="tab-content hidden">
+                <h2>✏️ Exercícios e Quizzes</h2>
+                <div id="quizContainer"></div>
+            </div>
+
+            <!-- TAB PROVA -->
+            <div id="prova" class="tab-content hidden">
+                <h2>🎓 Prova Final</h2>
+                <div id="provaContainer" class="prova-container"></div>
+            </div>
+
+            <!-- TAB RECURSOS -->
+            <div id="recursos" class="tab-content hidden">
+                <h2>🔧 Recursos e Materiais</h2>
+                <div class="content-detail">
+                    <h3>📖 Bibliografia Recomendada</h3>
+                    <ul>
+                        <li>Manual de Flebotomia - 5ª Edição</li>
+                        <li>Técnicas de Coleta de Sangue - Guia Prático</li>
+                        <li>Biossegurança em Laboratório Clínico</li>
+                        <li>Anatomia e Fisiologia do Sistema Circulatório</li>
+                    </ul>
+                    
+                    <h3>🎥 Vídeos Educativos</h3>
+                    <ul>
+                        <li>Técnica de Punção Venosa - Demonstração Prática</li>
+                        <li>Identificação de Veias - Casos Clínicos</li>
+                        <li>Procedimentos de Emergência em Flebotomia</li>
+                        <li>Manuseio de Amostras - Do Laboratório à Análise</li>
+                    </ul>
+                    
+                    <h3>🛠️ Equipamentos Necessários</h3>
+                    <ul>
+                        <li>Agulhas de diferentes calibres (21G, 23G, 25G)</li>
+                        <li>Seringas descartáveis (3ml, 5ml, 10ml)</li>
+                        <li>Tubos de coleta com diferentes aditivos</li>
+                        <li>Garrote, algodão, álcool 70%</li>
+                        <li>Luvas de procedimento</li>
+                        <li>Recipiente para descarte de material perfurocortante</li>
+                        <li>Etiquetas de identificação</li>
+                        <li>Centrífuga para separação de amostras</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados do curso
+        const courseData = {
+            weeks: [
+                {
+                    id: 1,
+                    title: "Semana 1: Introdução à Flebotomia",
+                    description: "Conceitos básicos, história e importância da flebotomia",
+                    content: `
+                        <h2>Introdução à Flebotomia</h2>
+                        
+                        <h3>Objetivos da Semana</h3>
+                        <ul>
+                            <li>Compreender o conceito e importância da flebotomia</li>
+                            <li>Conhecer a história e evolução das técnicas</li>
+                            <li>Identificar as responsabilidades do flebotomista</li>
+                            <li>Entender os aspectos éticos da profissão</li>
+                        </ul>
+                        
+                        <h3>Conteúdo Teórico</h3>
+                        <p><strong>O que é Flebotomia?</strong></p>
+                        <p>A flebotomia é o procedimento médico de coleta de sangue através da punção de uma veia. É uma técnica fundamental para diagnósticos laboratoriais, doações de sangue e alguns tratamentos terapêuticos.</p>
+                        
+                        <p><strong>História da Flebotomia</strong></p>
+                        <p>Desde a antiguidade, a sangria era praticada como forma de tratamento. Com o avanço da medicina, a flebotomia evoluiu para se tornar uma ferramenta diagnóstica essencial.</p>
+                        
+                        <p><strong>Responsabilidades do Flebotomista</strong></p>
+                        <ul>
+                            <li>Realizar coletas de sangue com segurança e precisão</li>
+                            <li>Manter a esterilidade e biossegurança</li>
+                            <li>Identificar corretamente as amostras</li>
+                            <li>Proporcionar conforto ao paciente</li>
+                            <li>Manter registros adequados</li>
+                        </ul>
+                        
+                        <h3>Atividades Práticas</h3>
+                        <ul>
+                            <li>Apresentação dos equipamentos básicos</li>
+                            <li>Demonstração de técnicas de higienização das mãos</li>
+                            <li>Exercícios de identificação de materiais</li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 2,
+                    title: "Semana 2: Anatomia do Sistema Circulatório",
+                    description: "Estudo da anatomia vascular e localização de veias",
+                    content: `
+                        <h2>Anatomia do Sistema Circulatório</h2>
+                        
+                        <h3>Objetivos da Semana</h3>
+                        <ul>
+                            <li>Compreender a anatomia do sistema circulatório</li>
+                            <li>Identificar as principais veias para punção</li>
+                            <li>Entender a fisiologia da circulação sanguínea</li>
+                            <li>Reconhecer variações anatômicas</li>
+                        </ul>
+                        
+                        <h3>Sistema Circulatório</h3>
+                        <p><strong>Componentes principais:</strong></p>
+                        <ul>
+                            <li>Coração - bomba muscular</li>
+                            <li>Artérias - transportam sangue oxigenado</li>
+                            <li>Veias - retornam sangue ao coração</li>
+                            <li>Capilares - trocas gasosas e nutricionais</li>
+                        </ul>
+                        
+                        <h3>Principais Veias para Punção</h3>
+                        <p><strong>Fossa Antecubital:</strong></p>
+                        <ul>
+                            <li><strong>Veia Mediana Cubital:</strong> Primeira opção, mais calibrosa e fixa</li>
+                            <li><strong>Veia Cefálica:</strong> Segunda opção, no lado radial do antebraço</li>
+                            <li><strong>Veia Basílica:</strong> Terceira opção, próxima a nervos e artérias</li>
+                        </ul>
+                        
+                        <p><strong>Veias Alternativas:</strong></p>
+                        <ul>
+                            <li>Veias do dorso da mão</li>
+                            <li>Veias do punho</li>
+                            <li>Veias do pé (em casos especiais)</li>
+                        </ul>
+                        
+                        <h3>Fatores que Afetam a Punção</h3>
+                        <ul>
+                            <li>Idade do paciente</li>
+                            <li>Hidratação</li>
+                            <li>Temperatura corporal</li>
+                            <li>Histórico de punções anteriores</li>
+                            <li>Condições médicas específicas</li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 3,
+                    title: "Semana 3: Equipamentos e Materiais",
+                    description: "Conhecimento detalhado de todos os equipamentos utilizados",
+                    content: `
+                        <h2>Equipamentos e Materiais</h2>
+                        
+                        <h3>Objetivos da Semana</h3>
+                        <ul>
+                            <li>Identificar todos os equipamentos necessários</li>
+                            <li>Compreender as especificações de cada material</li>
+                            <li>Aprender sobre armazenamento adequado</li>
+                            <li>Conhecer os critérios de qualidade</li>
+                        </ul>
+                        
+                        <h3>Agulhas</h3>
+                        <p><strong>Calibres e Indicações:</strong></p>
+                        <ul>
+                            <li><strong>21G (0,8mm):</strong> Veias grossas, doação de sangue</li>
+                            <li><strong>23G (0,6mm):</strong> Uso geral, mais comum</li>
+                            <li><strong>25G (0,5mm):</strong> Veias finas, crianças, idosos</li>
+                        </ul>
+                        
+                        <h3>Tubos de Coleta</h3>
+                        <p><strong>Sistema a Vácuo:</strong></p>
+                        <ul>
+                            <li><strong>Tampa Vermelha:</strong> Sem aditivo - bioquímica</li>
+                            <li><strong>Tampa Roxa:</strong> EDTA - hemograma</li>
+                            <li><strong>Tampa Azul:</strong> Citrato - coagulação</li>
+                            <li><strong>Tampa Cinza:</strong> Fluoreto - glicose</li>
+                            <li><strong>Tampa Verde:</strong> Heparina - gasometria</li>
+                        </ul>
+                        
+                        <h3>Outros Materiais</h3>
+                        <ul>
+                            <li><strong>Garrote:</strong> Silicone ou borracha, descartável</li>
+                            <li><strong>Algodão:</strong> Absorvente, estéril</li>
+                            <li><strong>Álcool 70%:</strong> Antisséptico padrão</li>
+                            <li><strong>Esparadrapo:</strong> Fixação de curativo</li>
+                            <li><strong>Luvas:</strong> Proteção individual</li>
+                        </ul>
+                        
+                        <h3>Equipamentos de Apoio</h3>
+                        <ul>
+                            <li>Cadeira de coleta reclinável</li>
+                            <li>Mesa auxiliar com rodas</li>
+                            <li>Suporte para tubos</li>
+                            <li>Recipiente para descarte</li>
+                            <li>Centrífuga</li>
+                            <li>Refrigerador para amostras</li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 4,
+                    title: "Semana 4: Biossegurança",
+                    description: "Protocolos de segurança e prevenção de infecções",
+                    content: `
+                        <h2>Biossegurança em Flebotomia</h2>
+                        
+                        <h3>Objetivos da Semana</h3>
+                        <ul>
+                            <li>Compreender os princípios de biossegurança</li>
+                            <li>Aplicar precauções universais</li>
+                            <li>Conhecer protocolos de descontaminação</li>
+                            <li>Identificar riscos ocupacionais</li>
+                        </ul>
+                        
+                        <h3>Precauções Universais</h3>
+                        <p><strong>Princípios Básicos:</strong></p>
+                        <ul>
+                            <li>Considerar todo sangue como potencialmente infectante</li>
+                            <li>Usar equipamentos de proteção individual</li>
+                            <li>Lavar as mãos antes e após procedimentos</li>
+                            <li>Descartar materiais perfurocortantes adequadamente</li>
+                        </ul>
+                        
+                        <h3>Equipamentos de Proteção Individual (EPI)</h3>
+                        <ul>
+                            <li><strong>Luvas:</strong> Obrigatórias em todo procedimento</li>
+                            <li><strong>Óculos:</strong> Proteção contra respingos</li>
+                            <li><strong>Máscara:</strong> Proteção respiratória</li>
+                            <li><strong>Avental:</strong> Proteção da roupa e pele</li>
+                        </ul>
+                        
+                        <h3>Técnica de Higienização das Mãos</h3>
+                        <p><strong>Passos:</strong></p>
+                        <ul>
+                            <li>Molhar as mãos com água</li>
+                            <li>Aplicar sabão suficiente</li>
+                            <li>Esfregar por pelo menos 20 segundos</li>
+                            <li>Enxaguar completamente</li>
+                            <li>Secar com papel toalha descartável</li>
+                        </ul>
+                        
+                        <h3>Descarte de Materiais</h3>
+                        <ul>
+                            <li><strong>Perfurocortantes:</strong> Container rígido amarelo</li>
+                            <li><strong>Material biológico:</strong> Saco branco leitoso</li>
+                            <li><strong>Materiais recicláveis:</strong> Separação adequada</li>
+                        </ul>
+                        
+                        <h3>Procedimentos em Caso de Acidentes</h3>
+                        <ul>
+                            <li>Lavar imediatamente com água e sabão</li>
+                            <li>Notificar a supervisão</li>
+                            <li>Procurar atendimento médico</li>
+                            <li>Documentar o ocorrido</li>
+                            <li>Seguir protocolos pós-exposição</li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 5,
+                    title: "Semana 5: Técnicas de Punção Venosa",
+                    description: "Procedimentos práticos de coleta sanguínea",
+                    content: `
+                        <h2>Técnicas de Punção Venosa</h2>
+                        
+                        <h3>Objetivos da Semana</h3>
+                        <ul>
+                            <li>Dominar a técnica de punção venosa</li>
+                            <li>Desenvolver habilidades práticas</li>
+                            <li>Aprender diferentes abordagens</li>
+                            <li>Identificar e resolver problemas comuns</li>
+                        </ul>
+                        
+                        <h3>Preparação do Paciente</h3>
+                        <ul>
+                            <li><strong>Identificação:</strong> Confirmar nome, data de nascimento</li>
+                            <li><strong>Orientação:</strong> Explicar o procedimento</li>
+                            <li><strong>Posicionamento:</strong> Braço estendido e apoiado</li>
+                            <li><strong>Jejum:</strong> Verificar se necessário para o exame</li>
+                        </ul>
+                        
+                        <h3>Técnica Passo a Passo</h3>
+                        <p><strong>1. Preparação</strong></p>
+                        <ul>
+                            <li>Higienizar as mãos</li>
+                            <li>Colocar luvas</li>
+                            <li>Separar materiais necessários</li>
+                            <li>Verificar integridade dos equipamentos</li>
+                        </ul>
+                        
+                        <p><strong>2. Seleção da Veia</strong></p>
+                        <ul>
+                            <li>Aplicar garrote 10cm acima do local</li>
+                            <li>Palpar para identificar a melhor veia</li>
+                            <li>Fazer antissepsia com álcool 70%</li>
+                            <li>Aguardar secar naturalmente</li>
+                        </ul>
+                        
+                        <p><strong>3. Punção</strong></p>
+                        <ul>
+                            <li>Esticar a pele com o polegar</li>
+                            <li>Inserir agulha em ângulo de 15-30°</li>
+                            <li>Avançar até sentir diminuição da resistência</li>
+                            <li>Conectar tubo de coleta</li>
+                        </ul>
+                        
+                        <p><strong>4. Coleta</strong></p>
+                        <ul>
+                            <li>Manter braço imóvel</li>
+                            <li>Aguardar enchimento completo do tubo</li>
+                            <li>Trocar tubos se necessário</li>
+                            <li>Homogeneizar tubos com aditivo</li>
+                        </ul>
+                        
+                        <p><strong>5. Finalização</strong></p>
+                        <ul>
+                            <li>Retirar garrote antes da agulha</li>
+                            <li>Colocar algodão sobre local da punção</li>
+                            <li>Retirar agulha rapidamente</li>
+                            <li>Fazer compressão por 2-3 minutos</li>
+                            <li>Aplicar curativo</li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 6,
+                    title: "Semana 6: Problemas e Soluções na Punção",
+                    description: "Como lidar com dificuldades durante a coleta",
+                    content: `
+                        <h2>Problemas e Soluções na Punção</h2>
+                        
+                        <h3>Objetivos da Semana</h3>
+                        <ul>
+                            <li>Identificar problemas comuns na punção</li>
+                            <li>Desenvolver estratégias de solução</li>
+                            <li>Aprender técnicas alternativas</li>
+                            <li>Melhorar taxa de sucesso</li>
+                        </ul>
+                        
+                        <h3>Veias Difíceis de Visualizar</h3>
+                        <p><strong>Causas:</strong></p>
+                        <ul>
+                            <li>Desidratação do paciente</li>
+                            <li>Obesidade</li>
+                            <li>Idade avançada</li>
+                            <li>Pele escura ou tatuada</li>
+                        </ul>
+                        
+                        <p><strong>Soluções:</strong></p>
+                        <ul>
+                            <li>Aplicar calor local (compressa morna)</li>
+                            <li>Fazer massagem suave no braço</li>
+                            <li>Posicionar braço pendente</li>
+                            <li>Usar técnica de palpação</li>
+                            <li>Considerar punção em locais alternativos</li>
+                        </ul>
+                        
+                        <h3>Veia que "Estoura" ou "Rola"</h3>
+                        <p><strong>Prevenção:</strong></p>
+                        <ul>
+                            <li>Escolher calibre de agulha adequado</li>
+                            <li>Fixar bem a veia com o polegar</li>
+                            <li>Inserir agulha com ângulo correto</li>
+                            <li>Não aplicar pressão excessiva no garrote</li>
+                        </ul>
+                        
+                        <h3>Fluxo de Sangue Insuficiente</h3>
+                        <p><strong>Possíveis Causas:</strong></p>
+                        <ul>
+                            <li>Agulha muito fina para o calibre da veia</li>
+                            <li>Posição inadequada da agulha</li>
+                            <li>Garrote muito apertado ou muito frouxo</li>
+                            <li>Veia colapsada</li>
+                        </ul>
+                        
+                        <p><strong>Ações Corretivas:</strong></p>
+                        <ul>
+                            <li>Reposicionar ligeiramente a agulha</li>
+                            <li>Ajustar tensão do garrote</li>
+                            <li>Massagear suavemente o braço</li>
+                            <li>Trocar para agulha de menor calibre</li>
+                        </ul>
+                        
+                        <h3>Hematoma</h3>
+                        <p><strong>Prevenção:</strong></p>
+                        <ul>
+                            <li>Técnica adequada de punção</li>
+                            <li>Retirar garrote antes da agulha</li>
+                            <li>Fazer compressão adequada após punção</li>
+                            <li>Orientar paciente sobre cuidados</li>
+                        </ul>
+                        
+                        <h3>Pacientes Ansiosos ou com Fobia</h3>
+                        <p><strong>Estratégias:</strong></p>
+                        <ul>
+                            <li>Comunicação tranquilizadora</li>
+                            <li>Explicar cada passo do procedimento</li>
+                            <li>Técnica de distração (conversa)</li>
+                            <li>Posicionamento confortável</li>
+                            <li>Considerar punção em decúbito dorsal</li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 7,
+                    title: "Semana 7: Coleta em Populações Especiais",
+                    description: "Técnicas específicas para crianças, idosos e casos especiais",
+                    content: `
+                        <h2>Coleta em Populações Especiais</h2>
+                        
+                        <h3>Objetivos da Semana</h3>
+                        <ul>
+                            <li>Adaptar técnicas para diferentes faixas etárias</li>
+                            <li>Compreender necessidades específicas</li>
+                            <li>Desenvolver habilidades de comunicação</li>
+                            <li>Aplicar medidas de segurança especiais</li>
+                        </ul>
+                        
+                        <h3>Coleta em Pediatria</h3>
+                        <p><strong>Considerações Especiais:</strong></p>
+                        <ul>
+                            <li>Veias menores e mais frágeis</li>
+                            <li>Maior ansiedade e movimentação</li>
+                            <li>Menor volume de sangue disponível</li>
+                            <li>Necessidade de contenção adequada</li>
+                        </ul>
+                        
+                        <p><strong>Técnicas Adaptadas:</strong></p>
+                        <ul>
+                            <li>Usar agulhas de menor calibre (25G)</li>
+                            <li>Considerar punção em dorso da mão</li>
+                            <li>Aplicar técnicas de distração</li>
+                            <li>Solicitar ajuda dos pais/responsáveis</li>
+                            <li>Ser rápido e preciso</li>
+                        </ul>
+                        
+                        <h3>Coleta em Geriatria</h3>
+                        <p><strong>Desafios Comuns:</strong></p>
+                        <ul>
+                            <li>Pele mais frágil e fina</li>
+                            <li>Veias mais visíveis mas frágeis</li>
+                            <li>Possível uso de anticoagulantes</li>
+                            <li>Mobilidade reduzida</li>
+                        </ul>
+                        
+                        <p><strong>Cuidados Especiais:</strong></p>
+                        <ul>
+                            <li>Usar garrote com pressão mínima</li>
+                            <li>Evitar punções repetidas no mesmo local</li>
+                            <li>Fazer compressão mais prolongada</li>
+                            <li>Observar sinais de hematoma</li>
+                            <li>Ter paciência e gentileza</li>
+                        </ul>
+                        
+                        <h3>Pacientes com Condições Especiais</h3>
+                        <p><strong>Diabéticos:</strong></p>
+                        <ul>
+                            <li>Atenção especial à cicatrização</li>
+                            <li>Verificar horário da medicação</li>
+                            <li>Cuidado com hipoglicemia</li>
+                        </ul>
+                        
+                        <p><strong>Pacientes em Quimioterapia:</strong></p>
+                        <ul>
+                            <li>Imunidade comprometida</li>
+                            <li>Maior risco de infecção</li>
+                            <li>Veias possivelmente danificadas</li>
+                        </ul>
+                        
+                        <p><strong>Pacientes com Deficiência:</strong></p>
+                        <ul>
+                            <li>Adaptação da comunicação</li>
+                            <li>Posicionamento adequado</li>
+                            <li>Paciência e respeito</li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 8,
+                    title: "Semana 8: Manuseio e Transporte de Amostras",
+                    description: "Cuidados pós-coleta e preservação das amostras",
+                    content: `
+                        <h2>Manuseio e Transporte de Amostras</h2>
+                        
+                        <h3>Objetivos da Semana</h3>
+                        <ul>
+                            <li>Aprender técnicas corretas de manuseio</li>
+                            <li>Compreender requisitos de cada tipo de exame</li>
+                            <li>Conhecer condições de armazenamento</li>
+                            <li>Evitar erros pré-analíticos</li>
+                        </ul>
+                        
+                        <h3>Identificação de Amostras</h3>
+                        <p><strong>Informações Obrigatórias:</strong></p>
+                        <ul>
+                            <li>Nome completo do paciente</li>
+                            <li>Data de nascimento</li>
+                            <li>Data e hora da coleta</li>
+                            <li>Identificação do coletor</li>
+                            <li>Tipo de exame solicitado</li>
+                        </ul>
+                        
+                        <p><strong>Momento da Identificação:</strong></p>
+                        <ul>
+                            <li>Sempre na presença do paciente</li>
+                            <li>Antes do início da coleta</li>
+                            <li>Verificação dupla recomendada</li>
+                        </ul>
+                        
+                        <h3>Homogeneização</h3>
+                        <p><strong>Tubos com Aditivo:</strong></p>
+                        <ul>
+                            <li>Homogeneizar imediatamente após coleta</li>
+                            <li>Movimento de inversão suave</li>
+                            <li>Número de inversões específico por aditivo</li>
+                            <li>Evitar agitação vigorosa</li>
+                        </ul>
+                        
+                        <p><strong>Número de Inversões:</strong></p>
+                        <ul>
+                            <li>EDTA: 8-10 inversões</li>
+                            <li>Citrato: 3-4 inversões</li>
+                            <li>Heparina: 8-10 inversões</li>
+                            <li>Fluoreto: 8-10 inversões</li>
+                        </ul>
+                        
+                        <h3>Condições de Armazenamento</h3>
+                        <p><strong>Temperatura Ambiente (15-25°C):</strong></p>
+                        <ul>
+                            <li>Provas de coagulação (até 4 horas)</li>
+                            <li>Gasometria (até 30 minutos)</li>
+                            <li>Glicose (até 2 horas)</li>
+                        </ul>
+                        
+                        <p><strong>Refrigeração (2-8°C):</strong></p>
+                        <ul>
+                            <li>Maioria dos exames bioquímicos</li>
+                            <li>Hormônios</li>
+                            <li>Marcadores tumorais</li>
+                        </ul>
+                        
+                        <p><strong>Congelamento (-20°C):</strong></p>
+                        <ul>
+                            <li>Exames especiais</li>
+                            <li>Amostras para envio externo</li>
+                            <li>Estudos de pesquisa</li>
+                        </ul>
+                        
+                        <h3>Transporte de Amostras</h3>
+                        <p><strong>Cuidados no Transporte:</strong></p>
+                        <ul>
+                            <li>Usar recipientes apropriados</li>
+                            <li>Manter temperatura adequada</li>
+                            <li>Proteger da luz se necessário</li>
+                            <li>Evitar agitação excessiva</li>
+                            <li>Documentar cadeia de custódia</li>
+                        </ul>
+                        
+                        <h3>Centrifugação</h3>
+                        <p><strong>Quando Necessária:</strong></p>
+                        <ul>
+                            <li>Separação de soro/plasma</li>
+                            <li>Exames bioquímicos</li>
+                            <li>Testes sorológicos</li>
+                        </ul>
+                        
+                        <p><strong>Parâmetros:</strong></p>
+                        <ul>
+                            <li>Velocidade: 3000-4000 rpm</li>
+                            <li>Tempo: 10-15 minutos</li>
+                            <li>Temperatura: ambiente ou refrigerada</li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 9,
+                    title: "Semana 9: Controle de Qualidade",
+                    description: "Procedimentos para garantir qualidade das amostras",
+                    content: `
+                        <h2>Controle de Qualidade</h2>
+                        
+                        <h3>Objetivos da Semana</h3>
+                        <ul>
+                            <li>Compreender importância do controle de qualidade</li>
+                            <li>Identificar fatores que afetam qualidade</li>
+                            <li>Aplicar medidas preventivas</li>
+                            <li>Conhecer indicadores de qualidade</li>
+                        </ul>
+                        
+                        <h3>Fatores Pré-Analíticos</h3>
+                        <p><strong>Relacionados ao Paciente:</strong></p>
+                        <ul>
+                            <li>Preparo inadequado (jejum, medicações)</li>
+                            <li>Estado físico e emocional</li>
+                            <li>Posição durante coleta</li>
+                            <li>Variações circadianas</li>
+                        </ul>
+                        
+                        <p><strong>Relacionados à Coleta:</strong></p>
+                        <ul>
+                            <li>Identificação incorreta</li>
+                            <li>Técnica de punção inadequada</li>
+                            <li>Uso de garrote prolongado</li>
+                            <li>Ordem incorreta de coleta</li>
+                            <li>Homogeneização inadequada</li>
+                        </ul>
+                        
+                        <p><strong>Relacionados ao Manuseio:</strong></p>
+                        <ul>
+                            <li>Armazenamento inadequado</li>
+                            <li>Demora no processamento</li>
+                            <li>Centrifugação incorreta</li>
+                            <li>Contaminação cruzada</li>
+                        </ul>
+                        
+                        <h3>Indicadores de Qualidade</h3>
+                        <p><strong>Taxa de Recoleta:</strong></p>
+                        <ul>
+                            <li>Meta: < 2% do total de coletas</li>
+                            <li>Monitoramento mensal</li>
+                            <li>Identificação de causas</li>
+                        </ul>
+                        
+                        <p><strong>Amostras Rejeitadas:</strong></p>
+                        <ul>
+                            <li>Hemólise excessiva</li>
+                            <li>Coágulos em tubos com anticoagulante</li>
+                            <li>Volume insuficiente</li>
+                            <li>Identificação inadequada</li>
+                        </ul>
+                        
+                        <h3>Prevenção de Hemólise</h3>
+                        <p><strong>Principais Causas:</strong></p>
+                        <ul>
+                            <li>Agulha muito fina</li>
+                            <li>Aspiração muito forte</li>
+                            <li>Agitação vigorosa</li>
+                            <li>Temperatura inadequada</li>
+                        </ul>
+                        
+                        <p><strong>Medidas Preventivas:</strong></p>
+                        <ul>
+                            <li>Usar calibre adequado de agulha</li>
+                            <li>Permitir fluxo natural</li>
+                            <li>Homogeneizar suavemente</li>
+                            <li>Evitar exposição ao calor</li>
+                        </ul>
+                        
+                        <h3>Documentação e Rastreabilidade</h3>
+                        <ul>
+                            <li>Registro de todas as atividades</li>
+                            <li>Identificação do responsável</li>
+                            <li>Horários de coleta e processamento</li>
+                            <li>Condições de transporte</li>
+                            <li>Intercorrências durante processo</li>
+                        </ul>
+                        
+                        <h3>Auditoria Interna</h3>
+                        <ul>
+                            <li>Avaliação periódica dos processos</li>
+                            <li>Verificação de conformidade</li>
+                            <li>Identificação de oportunidades de melhoria</li>
+                            <li>Implementação de ações corretivas</li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 10,
+                    title: "Semana 10: Aspectos Legais e Éticos",
+                    description: "Regulamentações e responsabilidades profissionais",
+                    content: `
+                        <h2>Aspectos Legais e Éticos</h2>
+                        
+                        <h3>Objetivos da Semana</h3>
+                        <ul>
+                            <li>Conhecer regulamentações profissionais</li>
+                            <li>Compreender responsabilidades legais</li>
+                            <li>Aplicar princípios éticos</li>
+                            <li>Entender direitos do paciente</li>
+                        </ul>
+                        
+                        <h3>Regulamentação Profissional</h3>
+                        <p><strong>Órgãos Reguladores:</strong></p>
+                        <ul>
+                            <li>Conselho Federal de Biomedicina (CFBM)</li>
+                            <li>Conselho Federal de Farmácia (CFF)</li>
+                            <li>Conselho Federal de Enfermagem (COFEN)</li>
+                            <li>Agência Nacional de Vigilância Sanitária (ANVISA)</li>
+                        </ul>
+                        
+                        <p><strong>Requisitos para Atuação:</strong></p>
+                        <ul>
+                            <li>Formação técnica ou superior específica</li>
+                            <li>Registro no conselho profissional</li>
+                            <li>Certificação em cursos reconhecidos</li>
+                            <li>Educação continuada</li>
+                        </ul>
+                        
+                        <h3>Princípios Éticos</h3>
+                        <p><strong>Beneficência:</strong></p>
+                        <ul>
+                            <li>Fazer o bem ao paciente</li>
+                            <li>Promover seu bem-estar</li>
+                            <li>Buscar os melhores resultados</li>
+                        </ul>
+                        
+                        <p><strong>Não-maleficência:</strong></p>
+                        <ul>
+                            <li>Não causar danos ao paciente</li>
+                            <li>Minimizar riscos</li>
+                            <li>Evitar procedimentos desnecessários</li>
+                        </ul>
+                        
+                        <p><strong>Autonomia:</strong></p>
+                        <ul>
+                            <li>Respeitar decisões do paciente</li>
+                            <li>Obter consentimento informado</li>
+                            <li>Fornecer informações claras</li>
+                        </ul>
+                        
+                        <p><strong>Justiça:</strong></p>
+                        <ul>
+                            <li>Tratamento igualitário</li>
+                            <li>Distribuição equitativa de recursos</li>
+                            <li>Respeito à dignidade humana</li>
+                        </ul>
+                        
+                        <h3>Direitos do Paciente</h3>
+                        <ul>
+                            <li>Direito à informação</li>
+                            <li>Direito à privacidade</li>
+                            <li>Direito ao consentimento</li>
+                            <li>Direito à qualidade do atendimento</li>
+                            <li>Direito à segurança</li>
+                        </ul>
+                        
+                        <h3>Confidencialidade</h3>
+                        <p><strong>Sigilo Profissional:</strong></p>
+                        <ul>
+                            <li>Proteção de informações pessoais</li>
+                            <li>Compartilhamento apenas quando necessário</li>
+                            <li>Armazenamento seguro de dados</li>
+                            <li>Descarte adequado de informações</li>
+                        </ul>
+                        
+                        <h3>Responsabilidades Legais</h3>
+                        <ul>
+                            <li>Responsabilidade civil</li>
+                            <li>Responsabilidade penal</li>
+                            <li>Responsabilidade ética</li>
+                            <li>Responsabilidade administrativa</li>
+                        </ul>
+                        
+                        <h3>Documentação Legal</h3>
+                        <ul>
+                            <li>Registros precisos e completos</li>
+                            <li>Assinatura e identificação</li>
+                            <li>Correções adequadas</li>
+                            <li>Tempo de arquivo obrigatório</li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 11,
+                    title: "Semana 11: Situações de Emergência",
+                    description: "Como agir em situações críticas durante procedimentos",
+                    content: `
+                        <h2>Situações de Emergência</h2>
+                        
+                        <h3>Objetivos da Semana</h3>
+                        <ul>
+                            <li>Reconhecer situações de emergência</li>
+                            <li>Aplicar primeiros socorros básicos</li>
+                            <li>Conhecer protocolos de emergência</li>
+                            <li>Saber quando solicitar ajuda médica</li>
+                        </ul>
+                        
+                        <h3>Síncope (Desmaio)</h3>
+                        <p><strong>Sinais e Sintomas:</strong></p>
+                        <ul>
+                            <li>Palidez súbita</li>
+                            <li>Sudorese fria</li>
+                            <li>Tontura e náusea</li>
+                            <li>Perda de consciência</li>
+                        </ul>
+                        
+                        <p><strong>Conduta:</strong></p>
+                        <ul>
+                            <li>Interromper procedimento imediatamente</li>
+                            <li>Posicionar paciente em decúbito dorsal</li>
+                            <li>Elevar membros inferiores</li>
+                            <li>Verificar sinais vitais</li>
+                            <li>Aplicar compressa fria na testa</li>
+                            <li>Oferecer água quando recuperado</li>
+                        </ul>
+                        
+                        <h3>Convulsões</h3>
+                        <p><strong>Conduta Durante Crise:</strong></p>
+                        <ul>
+                            <li>Proteger paciente de lesões</li>
+                            <li>Não tentar conter movimentos</li>
+                            <li>Posicionar em decúbito lateral</li>
+                            <li>Não colocar objetos na boca</li>
+                            <li>Cronometrar duração da crise</li>
+                            <li>Solicitar atendimento médico</li>
+                        </ul>
+                        
+                        <h3>Reações Alérgicas</h3>
+                        <p><strong>Sinais de Alerta:</strong></p>
+                        <ul>
+                            <li>Urticária ou erupções</li>
+                            <li>Inchaço (face, lábios, língua)</li>
+                            <li>Dificuldade respiratória</li>
+                            <li>Queda da pressão arterial</li>
+                        </ul>
+                        
+                        <p><strong>Conduta:</strong></p>
+                        <ul>
+                            <li>Interromper procedimento</li>
+                            <li>Avaliar vias aéreas</li>
+                            <li>Administrar oxigênio se disponível</li>
+                            <li>Solicitar atendimento médico urgente</li>
+                            <li>Preparar para uso de epinefrina</li>
+                        </ul>
+                        
+                        <h3>Acidentes com Material Perfurocortante</h3>
+                        <p><strong>Conduta Imediata:</strong></p>
+                        <ul>
+                            <li>Não interromper sangramento inicial</li>
+                            <li>Lavar com água e sabão abundantemente</li>
+                            <li>Aplicar antisséptico</li>
+                            <li>Notificar supervisão imediatamente</li>
+                            <li>Procurar atendimento médico</li>
+                            <li>Documentar acidente</li>
+                        </ul>
+                        
+                        <h3>Parada Cardiorrespiratória</h3>
+                        <p><strong>Reconhecimento:</strong></p>
+                        <ul>
+                            <li>Inconsciência</li>
+                            <li>Ausência de pulso</li>
+                            <li>Ausência de respiração</li>
+                        </ul>
+                        
+                        <p><strong>Conduta (RCP Básica):</strong></p>
+                        <ul>
+                            <li>Chamar ajuda médica (192)</li>
+                            <li>Posicionar paciente em superfície rígida</li>
+                            <li>Iniciar compressões torácicas</li>
+                            <li>30 compressões : 2 ventilações</li>
+                            <li>Continuar até chegada do socorro</li>
+                        </ul>
+                        
+                        <h3>Kit de Emergência</h3>
+                        <p><strong>Materiais Essenciais:</strong></p>
+                        <ul>
+                            <li>Soro fisiológico 0,9%</li>
+                            <li>Gaze estéril</li>
+                            <li>Esparadrapo</li>
+                            <li>Luvas descartáveis</li>
+                            <li>Máscara para ventilação</li>
+                            <li>Termômetro</li>
+                            <li>Esfigmomanômetro</li>
+                        </ul>
+                        
+                        <h3>Contatos de Emergência</h3>
+                        <ul>
+                            <li>SAMU: 192</li>
+                            <li>Bombeiros: 193</li>
+                            <li>Centro de Informações Toxicológicas</li>
+                            <li>Supervisão médica do laboratório</li>
+                            <li>Coordenação de enfermagem</li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 12,
+                    title: "Semana 12: Revisão Geral e Avaliação Final",
+                    description: "Consolidação do aprendizado e preparação para prática profissional",
+                    content: `
+                        <h2>Revisão Geral e Avaliação Final</h2>
+                        
+                        <h3>Objetivos da Semana</h3>
+                        <ul>
+                            <li>Consolidar conhecimentos adquiridos</li>
+                            <li>Integrar teoria e prática</li>
+                            <li>Avaliar competências desenvolvidas</li>
+                            <li>Preparar para atuação profissional</li>
+                        </ul>
+                        
+                        <h3>Revisão de Conceitos Fundamentais</h3>
+                        <p><strong>Anatomia e Fisiologia:</strong></p>
+                        <ul>
+                            <li>Sistema circulatório</li>
+                            <li>Principais veias para punção</li>
+                            <li>Composição do sangue</li>
+                            <li>Mecanismos de coagulação</li>
+                        </ul>
+                        
+                        <p><strong>Técnicas de Coleta:</strong></p>
+                        <ul>
+                            <li>Preparação do paciente</li>
+                            <li>Seleção de materiais</li>
+                            <li>Técnica de punção venosa</li>
+                            <li>Ordem de coleta de tubos</li>
+                            <li>Finalização do procedimento</li>
+                        </ul>
+                        
+                        <p><strong>Biossegurança:</strong></p>
+                        <ul>
+                            <li>Precauções universais</li>
+                            <li>Uso correto de EPIs</li>
+                            <li>Descarte de materiais</li>
+                            <li>Prevenção de acidentes</li>
+                        </ul>
+                        
+                        <h3>Situações Práticas - Casos Clínicos</h3>
+                        
+                        <p><strong>Caso 1:</strong> Paciente idoso, diabético, com veias frágeis</p>
+                        <p><strong>Caso 2:</strong> Criança de 5 anos com fobia de agulhas</p>
+                        <p><strong>Caso 3:</strong> Adulto obeso com veias difíceis de localizar</p>
+                        <p><strong>Caso 4:</strong> Paciente em uso de anticoagulantes</p>
+                        <p><strong>Caso 5:</strong> Situação de emergência durante coleta</p>
+                        
+                        <h3>Competências Esperadas</h3>
+                        
+                        <p><strong>Conhecimentos Técnicos:</strong></p>
+                        <ul>
+                            <li>Domínio da anatomia vascular</li>
+                            <li>Conhecimento de materiais e equipamentos</li>
+                            <li>Compreensão de exames laboratoriais</li>
+                            <li>Aplicação de normas de qualidade</li>
+                        </ul>
+                        
+                        <p><strong>Habilidades Práticas:</strong></p>
+                        <ul>
+                            <li>Execução correta da punção venosa</li>
+                            <li>Manuseio adequado de amostras</li>
+                            <li>Aplicação de medidas de biossegurança</li>
+                            <li>Resolução de problemas durante coleta</li>
+                        </ul>
+                        
+                        <p><strong>Atitudes Profissionais:</strong></p>
+                        <ul>
+                            <li>Comunicação eficaz com pacientes</li>
+                            <li>Postura ética e profissional</li>
+                            <li>Trabalho em equipe</li>
+                            <li>Busca por educação continuada</li>
+                        </ul>
+                        
+                        <h3>Preparação para o Mercado de Trabalho</h3>
+                        
+                        <p><strong>Áreas de Atuação:</strong></p>
+                        <ul>
+                            <li>Laboratórios de análises clínicas</li>
+                            <li>Hospitais e clínicas</li>
+                            <li>Postos de coleta</li>
+                            <li>Bancos de sangue</li>
+                            <li>Atendimento domiciliar</li>
+                        </ul>
+                        
+                        <p><strong>Desenvolvimento Profissional Contínuo:</strong></p>
+                        <ul>
+                            <li>Participação em cursos de atualização</li>
+                            <li>Leitura de literatura científica</li>
+                            <li>Participação em congressos</li>
+                            <li>Certificações adicionais</li>
+                        </ul>
+                        
+                        <h3>Avaliação do Curso</h3>
+                        <ul>
+                            <li>Prova teórica abrangente</li>
+                            <li>Avaliação prática supervisionada</li>
+                            <li>Apresentação de casos clínicos</li>
+                            <li>Autoavaliação do aprendizado</li>
+                        </ul>
+                        
+                        <h3>Recursos para Educação Continuada</h3>
+                        <ul>
+                            <li>Sociedade Brasileira de Análises Clínicas</li>
+                            <li>Conselho Federal de Biomedicina</li>
+                            <li>Revistas científicas especializadas</li>
+                            <li>Plataformas de ensino online</li>
+                        </ul>
+                    `
+                }
+            ],
+            
+            quizzes: {
+                "semana_01": [
+                    {
+                        question: "O que significa flebotomia?",
+                        options: [
+                            "Estudo das veias",
+                            "Procedimento de coleta de sangue através da punção de uma veia",
+                            "Análise laboratorial de sangue",
+                            "Tratamento de doenças vasculares"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        question: "Qual é a principal responsabilidade do flebotomista?",
+                        options: [
+                            "Diagnosticar doenças",
+                            "Prescrever medicamentos",
+                            "Realizar coletas de sangue com segurança e precisão",
+                            "Interpretar resultados de exames"
+                        ],
+                        correct: 2
+                    },
+                    {
+                        question: "Quais são os princípios éticos fundamentais na flebotomia?",
+                        options: [
+                            "Rapidez e eficiência",
+                            "Confidencialidade e consentimento informado",
+                            "Lucro e produtividade",
+                            "Tecnologia e inovação"
+                        ],
+                        correct: 1
+                    }
+                ],
+                
+                "semana_02": [
+                    {
+                        question: "Qual é a veia de primeira escolha para punção venosa?",
+                        options: [
+                            "Veia basílica",
+                            "Veia mediana cubital",
+                            "Veia cefálica",
+                            "Veia jugular"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        question: "Por que a veia basílica é considerada terceira opção?",
+                        options: [
+                            "É muito pequena",
+                            "Está próxima a nervos e artérias",
+                            "É difícil de localizar",
+                            "Tem paredes muito grossas"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        question: "Qual fator NÃO afeta a visualização das veias?",
+                        options: [
+                            "Desidratação",
+                            "Idade do paciente",
+                            "Cor dos cabelos",
+                            "Temperatura corporal"
+                        ],
+                        correct: 2
+                    }
+                ],
+                
+                "semana_03": [
+                    {
+                        question: "Qual calibre de agulha é mais adequado para crianças?",
+                        options: [
+                            "21G",
+                            "23G",
+                            "25G",
+                            "19G"
+                        ],
+                        correct: 2
+                    },
+                    {
+                        question: "O tubo com tampa roxa contém qual aditivo?",
+                        options: [
+                            "Citrato",
+                            "EDTA",
+                            "Heparina",
+                            "Fluoreto"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        question: "Para que tipo de exame é usado o tubo com tampa azul?",
+                        options: [
+                            "Hemograma",
+                            "Bioquímica",
+                            "Coagulação",
+                            "Glicose"
+                        ],
+                        correct: 2
+                    }
+                ],
+                
+                "geral": [
+                    {
+                        question: "Qual é o tempo máximo recomendado para manter o garrote aplicado?",
+                        options: [
+                            "30 segundos",
+                            "1 minuto",
+                            "2 minutos",
+                            "5 minutos"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        question: "Quantas inversões são recomendadas para tubos com EDTA?",
+                        options: [
+                            "3-4 inversões",
+                            "5-6 inversões",
+                            "8-10 inversões",
+                            "15-20 inversões"
+                        ],
+                        correct: 2
+                    },
+                    {
+                        question: "Em caso de síncope durante a coleta, qual é a primeira medida?",
+                        options: [
+                            "Oferecer água",
+                            "Interromper o procedimento",
+                            "Continuar a coleta rapidamente",
+                            "Chamar a família"
+                        ],
+                        correct: 1
+                    }
+                ]
+            },
+            
+            provaFinal: [
+                {
+                    question: "Descreva o procedimento completo de punção venosa, desde a preparação do paciente até a finalização.",
+                    type: "essay",
+                    points: 20
+                },
+                {
+                    question: "Um paciente idoso de 75 anos precisa realizar exames de rotina. Ele apresenta veias frágeis e está em uso de anticoagulante. Descreva os cuidados especiais necessários.",
+                    type: "essay", 
+                    points: 15
+                },
+                {
+                    question: "Explique a importância da ordem correta na coleta de múltiplos tubos e liste a sequência adequada.",
+                    type: "essay",
+                    points: 15
+                },
+                {
+                    question: "Quais são as principais causas de hemólise em amostras e como preveni-las?",
+                    options: [
+                        "Apenas agulha muito fina",
+                        "Agulha muito fina, aspiração forte, agitação vigorosa e temperatura inadequada",
+                        "Apenas temperatura inadequada",
+                        "Apenas agitação vigorosa"
+                    ],
+                    correct: 1,
+                    points: 10
+                },
+                {
+                    question: "Em uma situação de emergência com parada cardiorrespiratória, qual é a sequência correta do atendimento?",
+                    options: [
+                        "Ventilação, compressão, chamar ajuda",
+                        "Compressão, ventilação, chamar ajuda",
+                        "Chamar ajuda, posicionar, iniciar RCP",
+                        "Checar pulso, ventilar, comprimir"
+                    ],
+                    correct: 2,
+                    points: 10
+                },
+                {
+                    question: "Qual é a temperatura adequada para armazenamento da maioria dos exames bioquímicos?",
+                    options: [
+                        "Temperatura ambiente (15-25°C)",
+                        "Refrigeração (2-8°C)",
+                        "Congelamento (-20°C)",
+                        "Qualquer temperatura"
+                    ],
+                    correct: 1,
+                    points: 5
+                },
+                {
+                    question: "O princípio ético da autonomia em flebotomia refere-se a:",
+                    options: [
+                        "Fazer o bem ao paciente",
+                        "Não causar danos",
+                        "Respeitar as decisões do paciente",
+                        "Tratar todos igualmente"
+                    ],
+                    correct: 2,
+                    points: 5
+                },
+                {
+                    question: "Qual é a conduta correta em caso de acidente com material perfurocortante?",
+                    options: [
+                        "Estancar o sangramento imediatamente",
+                        "Lavar com água e sabão, aplicar antisséptico, notificar supervisão",
+                        "Apenas aplicar antisséptico",
+                        "Ignorar se foi um ferimento pequeno"
+                    ],
+                    correct: 1,
+                    points: 10
+                },
+                {
+                    question: "A taxa máxima aceitável de recoletas em um laboratório deve ser:",
+                    options: [
+                        "< 1%",
+                        "< 2%", 
+                        "< 5%",
+                        "< 10%"
+                    ],
+                    correct: 1,
+                    points: 5
+                },
+                {
+                    question: "Durante a coleta em uma criança de 4 anos, qual estratégia é mais adequada?",
+                    options: [
+                        "Contenção física apenas",
+                        "Técnicas de distração, agulha menor calibre, ser rápido e preciso",
+                        "Sedação obrigatória",
+                        "Adiar o procedimento"
+                    ],
+                    correct: 1,
+                    points: 5
+                }
+            ]
+        };
+        
+        let currentWeek = null;
+        let currentQuizAnswers = {};
+        let completedWeeks = JSON.parse(localStorage.getItem('completedWeeks') || '[]');
+        
+        // Função para mostrar tabs
+        function showTab(tabName) {
+            // Esconder todos os conteúdos
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            
+            // Remover classe active de todos os botões
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Mostrar tab selecionada
+            document.getElementById(tabName).classList.remove('hidden');
+            event.target.classList.add('active');
+            
+            // Carregar conteúdo específico
+            if (tabName === 'cronograma') {
+                loadWeekGrid();
+            } else if (tabName === 'exercicios') {
+                loadQuizzes();
+            } else if (tabName === 'prova') {
+                loadProvaFinal();
+            }
+        }
+        
+        // Função para carregar grid de semanas
+        function loadWeekGrid() {
+            const grid = document.getElementById('weekGrid');
+            grid.innerHTML = '';
+            
+            courseData.weeks.forEach(week => {
+                const isCompleted = completedWeeks.includes(week.id);
+                const card = document.createElement('div');
+                card.className = 'week-card';
+                if (isCompleted) {
+                    card.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+                }
+                
+                card.innerHTML = `
+                    <h3>${week.title} ${isCompleted ? '✓' : ''}</h3>
+                    <p>${week.description}</p>
+                `;
+                
+                card.addEventListener('click', () => showWeekContent(week));
+                grid.appendChild(card);
+            });
+            
+            updateProgress();
+        }
+        
+        // Função para mostrar conteúdo da semana
+        function showWeekContent(week) {
+            currentWeek = week;
+            document.getElementById('contentDetail').innerHTML = week.content;
+            
+            // Adicionar botão de conclusão
+            const completeBtn = document.createElement('button');
+            completeBtn.className = 'btn';
+            completeBtn.textContent = completedWeeks.includes(week.id) ? 
+                'Semana Concluída ✓' : 'Marcar como Concluída';
+            completeBtn.onclick = () => completeWeek(week.id);
+            
+            document.getElementById('contentDetail').appendChild(completeBtn);
+            
+            // Mudar para tab de conteúdo
+            showTab('conteudo');
+            document.querySelector('[onclick="showTab(\'conteudo\')"]').classList.add('active');
+        }
+        
+        // Função para marcar semana como concluída
+        function completeWeek(weekId) {
+            if (!completedWeeks.includes(weekId)) {
+                completedWeeks.push(weekId);
+                localStorage.setItem('completedWeeks', JSON.stringify(completedWeeks));
+                loadWeekGrid();
+                
+                if (currentWeek && currentWeek.id === weekId) {
+                    showWeekContent(currentWeek);
+                }
+            }
+        }
+        
+        // Função para atualizar barra de progresso
+        function updateProgress() {
+            const progress = (completedWeeks.length / courseData.weeks.length) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = progress + '%';
+            progressBar.textContent = Math.round(progress) + '%';
+        }
+        
+        // Função para carregar quizzes
+        function loadQuizzes() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = '<h3>Selecione um quiz:</h3>';
+            
+            // Quiz por semana
+            Object.keys(courseData.quizzes).forEach(quizKey => {
+                const btn = document.createElement('button');
+                btn.className = 'btn';
+                btn.textContent = quizKey === 'geral' ? 'Quiz Geral' : 
+                    `Quiz ${quizKey.replace('_', ' ').replace('semana', 'Semana')}`;
+                btn.onclick = () => startQuiz(quizKey);
+                container.appendChild(btn);
+            });
+        }
+        
+        // Função para iniciar quiz
+        function startQuiz(quizKey) {
+            const quiz = courseData.quizzes[quizKey];
+            const container = document.getElementById('quizContainer');
+            currentQuizAnswers = {};
+            
+            let html = `<h3>Quiz: ${quizKey.replace('_', ' ').replace('semana', 'Semana')}</h3>`;
+            
+            quiz.forEach((q, index) => {
+                html += `
+                    <div class="question">
+                        <h4>Pergunta ${index + 1}: ${q.question}</h4>
+                        <div class="options">
+                `;
+                
+                q.options.forEach((option, optIndex) => {
+                    html += `
+                        <label class="option">
+                            <input type="radio" name="q${index}" value="${optIndex}" 
+                                   onchange="saveQuizAnswer(${index}, ${optIndex})">
+                            ${option}
+                        </label>
+                    `;
+                });
+                
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `<button class="btn" onclick="submitQuiz('${quizKey}')">Enviar Respostas</button>`;
+            container.innerHTML = html;
+        }
+        
+        // Função para salvar resposta do quiz
+        function saveQuizAnswer(questionIndex, answerIndex) {
+            currentQuizAnswers[questionIndex] = answerIndex;
+        }
+        
+        // Função para enviar quiz
+        function submitQuiz(quizKey) {
+            const quiz = courseData.quizzes[quizKey];
+            let score = 0;
+            let results = '<h3>Resultado do Quiz</h3>';
+            
+            quiz.forEach((q, index) => {
+                const userAnswer = currentQuizAnswers[index];
+                const isCorrect = userAnswer === q.correct;
+                
+                if (isCorrect) score++;
+                
+                results += `
+                    <div class="question" style="background: ${isCorrect ? '#d4edda' : '#f8d7da'}">
+                        <h4>${q.question}</h4>
+                        <p><strong>Sua resposta:</strong> ${q.options[userAnswer] || 'Não respondida'}</p>
+                        <p><strong>Resposta correta:</strong> ${q.options[q.correct]}</p>
+                        <p><strong>Status:</strong> ${isCorrect ? '✅ Correto' : '❌ Incorreto'}</p>
+                    </div>
+                `;
+            });
+            
+            const percentage = Math.round((score / quiz.length) * 100);
+            results = `
+                <h3>Resultado: ${score}/${quiz.length} (${percentage}%)</h3>
+                <div style="background: ${percentage >= 70 ? '#d4edda' : '#f8d7da'}; 
+                           padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h4>${percentage >= 70 ? '🎉 Aprovado!' : '📚 Precisa estudar mais'}</h4>
+                    <p>${percentage >= 70 ? 
+                        'Parabéns! Você demonstrou bom conhecimento.' : 
+                        'Revise o conteúdo e tente novamente.'}</p>
+                </div>
+                ${results}
+                <button class="btn" onclick="loadQuizzes()">Voltar aos Quizzes</button>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = results;
+        }
+        
+        // Função para carregar prova final
+        function loadProvaFinal() {
+            const container = document.getElementById('provaContainer');
+            container.innerHTML = `
+                <h3>Prova Final do Curso de Flebotomia</h3>
+                <p><strong>Instruções:</strong></p>
+                <ul>
+                    <li>A prova vale 100 pontos no total</li>
+                    <li>Nota mínima para aprovação: 70 pontos</li>
+                    <li>Leia todas as questões com atenção</li>
+                    <li>Para questões dissertativas, seja completo e objetivo</li>
+                </ul>
+                <button class="btn" onclick="startFinalExam()">Iniciar Prova Final</button>
+            `;
+        }
+        
+        // Função para iniciar prova final
+        function startFinalExam() {
+            const container = document.getElementById('provaContainer');
+            let html = '<h3>Prova Final - Curso de Flebotomia</h3>';
+            
+            courseData.provaFinal.forEach((q, index) => {
+                html += `
+                    <div class="question">
+                        <h4>Questão ${index + 1} (${q.points} pontos)</h4>
+                        <p>${q.question}</p>
+                `;
+                
+                if (q.type === 'essay') {
+                    html += `
+                        <textarea style="width: 100%; height: 150px; padding: 10px; 
+                                        border-radius: 5px; border: 1px solid #ddd;" 
+                                 placeholder="Digite sua resposta aqui..."></textarea>
+                    `;
+                } else {
+                    html += '<div class="options">';
+                    q.options.forEach((option, optIndex) => {
+                        html += `
+                            <label class="option">
+                                <input type="radio" name="final_q${index}" value="${optIndex}">
+                                ${option}
+                            </label>
+                        `;
+                    });
+                    html += '</div>';
+                }
+                
+                html += '</div>';
+            });
+            
+            html += `
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn" onclick="submitFinalExam()" 
+                            style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                        Enviar Prova Final
+                    </button>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+        }
+        
+        // Função para enviar prova final
+        function submitFinalExam() {
+            const objectiveQuestions = courseData.provaFinal.filter(q => q.type !== 'essay');
+            let score = 0;
+            
+            objectiveQuestions.forEach((q, index) => {
+                // Encontrar o índice real da questão na prova
+                const realIndex = courseData.provaFinal.findIndex(pq => pq === q);
+                const selectedAnswer = document.querySelector(`input[name="final_q${realIndex}"]:checked`);
+                
+                if (selectedAnswer && parseInt(selectedAnswer.value) === q.correct) {
+                    score += q.points;
+                }
+            });
+            
+            // Para questões dissertativas, assumir pontuação média (60% dos pontos)
+            const essayQuestions = courseData.provaFinal.filter(q => q.type === 'essay');
+            const essayPoints = essayQuestions.reduce((sum, q) => sum + q.points, 0);
+            const estimatedEssayScore = Math.round(essayPoints * 0.6);
+            
+            const totalScore = score + estimatedEssayScore;
+            const maxScore = courseData.provaFinal.reduce((sum, q) => sum + q.points, 0);
+            const percentage = Math.round((totalScore / maxScore) * 100);
+            
+            const container = document.getElementById('provaContainer');
+            container.innerHTML = `
+                <div style="text-align: center; padding: 30px;">
+                    <h2>Resultado da Prova Final</h2>
+                    <div style="background: ${percentage >= 70 ? 'linear-gradient(135deg, #27ae60, #2ecc71)' : 'linear-gradient(135deg, #e74c3c, #c0392b)'}; 
+                               color: white; padding: 30px; border-radius: 20px; margin: 20px 0;">
+                        <h3>${percentage >= 70 ? '🎓 APROVADO!' : '📚 REPROVADO'}</h3>
+                        <p style="font-size: 1.5em; margin: 20px 0;">
+                            ${totalScore} / ${maxScore} pontos (${percentage}%)
+                        </p>
+                        <p>${percentage >= 70 ? 
+                            'Parabéns! Você está apto(a) para atuar como flebotomista.' : 
+                            'Você precisa de mais estudo. Nota mínima: 70%'}</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                        <h4>Detalhamento da Pontuação:</h4>
+                        <p><strong>Questões Objetivas:</strong> ${score} pontos</p>
+                        <p><strong>Questões Dissertativas:</strong> ${estimatedEssayScore} pontos (estimativa)</p>
+                        <p><em>Nota: As questões dissertativas serão corrigidas pelo professor.</em></p>
+                    </div>
+                    
+                    ${percentage >= 70 ? 
+                        '<p style="color: #27ae60; font-weight: bold;">Você concluiu com sucesso o Curso de Flebotomia!</p>' : 
+                        '<p style="color: #e74c3c;">Revise o conteúdo e refaça a prova quando se sentir preparado(a).</p>'
+                    }
+                    
+                    <button class="btn" onclick="loadProvaFinal()">Nova Tentativa</button>
+                </div>
+            `;
+        }
+        
+        // Inicializar página
+        document.addEventListener('DOMContentLoaded', function() {
+            loadWeekGrid();
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
